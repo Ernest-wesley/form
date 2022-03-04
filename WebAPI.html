@@ -1,1 +1,97 @@
+<html lang="en" dir="ltr">
+    <head>
+        <title>AJAX</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div class="full_page">
+            <div class="form_template">
+                <form action="form.html">
+                     <ul>
+                        <li>
+                             <label for="">Name</label>
+                             <input id="name" type="text" name="name" placeholder="Name">
+                                    
+                        </li> <br>
+                        <li>
+                            <label for="">Contact</label>
+                            <input id="contact" type="number" name="contact" placeholder="Tel number">
+                                    
+                        </li>
+                        <br>
+                        <li>
+                            <label for="">Gender</label>
+                            <select id="gender" name="gender">
+                                <option value="Male">Male </option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </li>
+                        <br />
+                    </li>
+                    <br>
+                    <li>
+                        <label for="">Relationship Status</label>
+                        <select id="relationship status" name="relationship status">
+                            <option value="Single">Single </option>
+                            <option value="Married">Married</option>
+                            <option value="Divorce">Divorce </option>
+                        </select>
+                    </li>
+                    <br />
 
+                        <li>
+                            <label for="">ID Number</label>
+                            <input id="id" type="text" name="id" placeholder="ID Number">
+                        </li>
+                        <br />
+                        <li>
+                            <label for="">User Picture</label>
+                            <input id="dp" type="file" name="dp" placeholder="User picture">
+         
+                        </li>
+                        <br />
+                        <button id="btn" type="submit">  Submit Form</button>
+                     </ul>
+                </form>
+
+                
+            </div>
+
+        </div>
+        <script src="form.php"></script>
+
+        <script>
+            const submitbtn = document.getElementById('btn');
+            const formdata = {
+                    name: document.getElementById('name'),
+                    contact: document.getElementById('contact'),
+                    id: document.getElementById('id'),
+                    dp: document.getElementById('dp'),
+                    gender: document.getElementById('gender'),
+
+                }
+            const sendData = ()=>{  
+                const request = new XMLHttpRequest();
+
+                xhr.onreadystatechange = ()=>{
+                    if(xhr.readyState === XMLHttRequest.DONE && xhr.status === 200 ){
+                        console.log(xhr.response);
+                    }
+                }
+
+                request.open('POST', 'form.html',true);
+                request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+                requestData = `name=${formdata.name.value}&contact=${formdata.contact.value}&gender=${formdata.gender.value}&id=${formdata.id.value}&dp=${formdata.dp.value}`;
+                console.log(requestData);
+
+                request.send(requestData);
+                
+            }
+
+            submitbtn.addEventListener('submit',sendData)
+            
+        </script>
+
+    </body>
+</html>
